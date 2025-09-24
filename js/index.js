@@ -48,7 +48,61 @@ const instrucoes = {
   }
 };
 
-// Função para mostrar/esconder selects
+// ---------------- Funções Auxiliares ----------------
+function getRadioValue(name) {
+  const selecionado = document.querySelector(`input[name="${name}"]:checked`);
+  return selecionado ? selecionado.value : "Não informado";
+}
+
+function getSelectValue(id) {
+  const select = document.getElementById(id);
+  return select && select.value ? select.value : "";
+}
+
+function coletarDados() {
+  const coagulacao = getRadioValue("coagulacao");
+  const peso = getRadioValue("peso");
+
+  const medCoagulacao = getSelectValue("medicamentoCoagulacao");
+  const medPeso = getSelectValue("medicamentoPeso");
+
+  let texto = `
+Problema cardíaco: ${getRadioValue("coracao")}
+Problema renal: ${getRadioValue("renal")}
+Alergia: ${getRadioValue("alergia")}
+Problema respiratório: ${getRadioValue("respiratorio")}
+
+Coagulação: ${coagulacao}
+Medicamento coagulação: ${medCoagulacao || "Não informado"}
+`;
+
+  if (medCoagulacao && instrucoes[medCoagulacao]) {
+    texto += `
+Suspensão: ${instrucoes[medCoagulacao].suspender}
+Retorno: ${instrucoes[medCoagulacao].retornar}
+`;
+  }
+
+  texto += `
+Uso de remédio para perda de peso: ${peso}
+Medicamento peso: ${medPeso || "Não informado"}
+`;
+
+  if (medPeso && instrucoes[medPeso]) {
+    texto += `
+Suspensão: ${instrucoes[medPeso].suspender}
+Retorno: ${instrucoes[medPeso].retornar}
+`;
+  }
+
+  texto += `
+Unidade preferida: ${getRadioValue("unidade")}
+`;
+
+  return texto.trim();
+}
+
+// ---------------- Função Mostrar/Esconder ----------------
 function configurarPergunta(radioSim, radioNao, select, respostaId) {
   const respostaDiv = document.createElement("div");
   respostaDiv.id = respostaId;
@@ -73,12 +127,11 @@ function configurarPergunta(radioSim, radioNao, select, respostaId) {
   select.addEventListener("change", () => {
     const valor = select.value;
     if (instrucoes[valor]) {
-        console.log("instrucoes[valor]: ", instrucoes[valor]);
       respostaDiv.innerHTML = `
         <div style="color:#b22222; margin-bottom:5px; border:1px solid #b22222; padding:8px; border-radius:5px; background:#ffe5e5;">
           Suspender medicação: <strong>${instrucoes[valor].suspender}</strong>
         </div>
-        <div style="color:#006400;  border:1px solid #006400; padding:8px; border-radius:5px; background:#e6ffe6;">
+        <div style="color:#006400; border:1px solid #006400; padding:8px; border-radius:5px; background:#e6ffe6;">
           Retornar a medicação: <strong>${instrucoes[valor].retornar}</strong>
         </div>
       `;
@@ -92,25 +145,37 @@ function configurarPergunta(radioSim, radioNao, select, respostaId) {
   select.style.display = "none";
 }
 
-// Configuração para anticoagulantes
-configurarPergunta(
-  document.getElementById("respostaCoagulacaoSim"),
-  document.getElementById("respostaCoagulacaoNao"),
-  document.getElementById("medicamentoCoagulacao"),
-  "respostaAnticoagulante"
-);
+// ---------------- Inicialização ----------------
+document.addEventListener("DOMContentLoaded", () => {
+  // Configurar selects condicionais
+  configurarPergunta(
+    document.getElementById("respostaCoagulacaoSim"),
+    document.getElementById("respostaCoagulacaoNao"),
+    document.getElementById("medicamentoCoagulacao"),
+    "respostaAnticoagulante"
+  );
 
-// Configuração para perda de peso
-configurarPergunta(
-  document.getElementById("respostaPesoSim"),
-  document.getElementById("respostaPesoNao"),
-  document.getElementById("medicamentoPeso"),
-  "respostaPeso"
-);
+  configurarPergunta(
+    document.getElementById("respostaPesoSim"),
+    document.getElementById("respostaPesoNao"),
+    document.getElementById("medicamentoPeso"),
+    "respostaPeso"
+  );
 
-// Botão limpar
-document.getElementById("btnLimpar").addEventListener("click", () => {
-  document.getElementById("formulario").reset();
-  document.querySelectorAll(".resposta").forEach(div => (div.style.display = "none"));
-  document.querySelectorAll("select").forEach(select => (select.style.display = "none"));
+  // Botão Copiar
+  document.getElementById("btnCopiar").addEventListener("click", () => {
+    const dados = coletarDados();
+    navigator.clipboard.writeText(dados).then(() => {
+      alert("Dados copiados para a área de transferência!");
+    }).catch(err => {
+      console.error("Erro ao copiar: ", err);
+    });
+  });
+
+  // Botão Limpar
+  document.getElementById("btnLimpar").addEventListener("click", () => {
+    document.getElementById("formulario").reset();
+    document.querySelectorAll(".resposta").forEach(div => (div.style.display = "none"));
+    document.querySelectorAll("select").forEach(select => (select.style.display = "none"));
+  });
 });
