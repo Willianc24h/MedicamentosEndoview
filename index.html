@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anamnese Endoview</title>
+    <link rel="icon" type="image/png" href="./assets/endo-logo.webp" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <form id="formulario" class="formulario">
+        <div class="container">
+
+
+      <div class="colunaUm">
+        <legend>Tem algum problema cardíaco importante?</legend>
+
+        <div>
+          <input
+            type="radio"
+            id="respostaCoracaoSim"
+            name="coracao"
+            value="Sim"
+          />
+          <label for="Sim">Sim</label>
+        </div>
+
+        <div>
+          <input
+            type="radio"
+            id="respostaCoracaoNao"
+            name="coracao"
+            value="Não"
+          />
+          <label for="Nao">Não</label>
+        </div>
+        <br><br>
+        <legend>Tem algum problema renal importante?</legend>
+
+        <div>
+          <input type="radio" id="respostaRenalSim" name="renal" value="Sim" />
+          <label for="Sim">Sim</label>
+        </div>
+
+        <div>
+          <input type="radio" id="respostaRenalNao" name="renal" value="Não" />
+          <label for="Nao">Não</label>
+        </div>
+        <br><br>
+        <legend>Tem alguma problema de alergia?</legend>
+
+        <div>
+          <input
+            type="radio"
+            id="respostaAlergiaSim"
+            name="alergia"
+            value="Sim"
+          />
+          <label for="Sim">Sim</label>
+        </div>
+
+        <div>
+          <input
+            type="radio"
+            id="respostaAlergiaNao"
+            name="alergia"
+            value="Não"
+          />
+          <label for="Nao">Não</label>
+        </div>
+        <br><br>
+        <legend>Faz uso de algum remédio que altera a coagulação?</legend>
+
+        <div>
+          <input
+            type="radio"
+            id="respostaCoagulacaoSim"
+            name="coagulacao"
+            value="Sim"
+          />
+          <label for="Sim">Sim</label>
+        </div>
+
+        <div>
+          <input
+            type="radio"
+            id="respostaCoagulacaoNao"
+            name="coagulacao"
+            value="Não"
+          />
+          <label for="Nao">Não</label>
+        </div>
+        <br><br>
+        <select id="medicamentoCoagulacao">
+          <option value="" disabled selected>Indique o medicamento</option>
+          <option value="AAS">AAS, Aspirina</option>
+          <option value="Plavix">Plavix, Clopidogrel</option>
+          <option value="Brilinta">
+            Brilinta, Marevan, Coumadin
+          </option>
+          <option value="Brilinta">
+            Vasogard, Ginkgo Biloba, Cilostazol
+          </option>
+          <option value="Rivaroxaban">
+            Rivaroxaban (Xarelto), Apixaban (Eliquis)
+          </option>
+          <option value="Rivaroxaban">
+            Edoxaban (Lixiana),
+            Dabigatran (Pradaxa)
+          </option>
+        </select>
+      </div>
+
+      <div class="colunaDois">
+        <legend>Tem algum problema respiratório importante?</legend>
+
+        <div>
+          <input
+            type="radio"
+            id="respostaRespiratorioSim"
+            name="respiratorio"
+            value="Sim"
+          />
+          <label for="Sim">Sim</label>
+        </div>
+
+        <div>
+          <input
+            type="radio"
+            id="respostaRespiratorioNao"
+            name="respiratorio"
+            value="Não"
+          />
+          <label for="Nao">Não</label>
+        </div>
+        <br><br>
+        <legend>Faz uso de algum remédio para perda de peso?</legend>
+
+        <div>
+          <input type="radio" id="respostaPesoSim" name="peso" value="Sim" />
+          <label for="Sim">Sim</label>
+        </div>
+
+        <div>
+          <input type="radio" id="respostaPesoNao" name="peso" value="Não" />
+          <label for="Nao">Não</label>
+        </div>
+        <br><br>
+        <select id="medicamentoPeso">
+          <option value="" disabled selected>Indique o medicamento</option>
+          <option value="Semaglutida">
+            Semaglutida (Ozempic, Wegovy, Rybelsus)
+          </option>
+          <option value="Dulaglutida">Dulaglutida (Trulicity)</option>
+          <option value="Liraglutida">Liraglutida (Saxenda ou Victosa)</option>
+          <option value="Tirzepatida">Tirzepatida (Mounjaro)</option>
+          <option value="Naltrexona">Naltrexona + Bupropiona (Contrave)</option>
+          <option value="Dapagliflozina">Dapagliflozina (Forxiga)</option>
+          <option value="Empagliflozina">
+            Empagliflozina (Jardiance ou Glyxambi)
+          </option>
+        </select>
+        <br><br>
+        <legend>
+          Qual das unidades da Endoview você tem preferência para agendar seu
+          procedimento?
+        </legend>
+
+        <div>
+          <input
+            type="radio"
+            id="unidadeBarra"
+            name="unidade"
+            value="Barra da Tijuca"
+          />
+          <label for="unidadeBarra">Barra da Tijuca</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="unidadeCaxias"
+            name="unidade"
+            value="Caxias"
+          />
+          <label for="unidadeCaxias">Caxias</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="unidadeTijuca"
+            name="unidade"
+            value="Tijuca"
+          />
+          <label for="unidadeTijuca">Tijuca</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="unidadeLeblon"
+            name="unidade"
+            value="Leblon"
+          />
+          <label for="unidadeLeblon">Leblon</label>
+        </div>
+        <div>
+          <input
+            type="radio" 
+            id="unidadeJacarepaguá"
+            name="unidade"
+            value="Jacarepaguá"
+          />
+          <label for="unidadeJacarepaguá">Jacarepaguá</label>
+        </div>
+    </div>
+</div>
+<button type="button" id="btnLimpar" class="btnLimpar">Limpar Campos</button>
+    </form>
+    <script src="./js/index.js"></script>
+  </body>
+</html> 

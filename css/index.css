@@ -1,0 +1,106 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    background-color: #344e4d; /* fundo da tela inteira */
+    font-family: Arial, sans-serif;
+}
+html{
+  height: 100%;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 auto;
+  height: 100%;
+  background-color: #344e4d;
+  padding: 2rem;
+}
+
+.colunaUm{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  background-color: #fdfad4;
+  padding: 2rem;
+  border-radius: 1em;
+  height: 100%;
+  width: 40%;
+}
+
+.colunaDois {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  background-color: #fdfad4;
+  padding: 2rem;
+  border-radius: 1em;
+  height: 100%;
+  width: 40%;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+select {
+  width: 60%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 1em;
+}
+
+.btnLimpar {
+  background-color: #fffeef;
+  border: none;
+  color: #344e4d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.titulo {
+  text-align: center;
+  color: #2596be;
+  margin-bottom: 20px;
+}
+
+img {
+  height: 7em;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  
+}
+
+.medicamentoPeso {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 2rem;
+  border-radius: 1em;
+}
