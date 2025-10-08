@@ -4,7 +4,15 @@ const instrucoes = {
     suspender: "Manter a medicação",
     retornar: "Manter a medicação"
   },
+    Aspirina: {
+    suspender: "Manter a medicação",
+    retornar: "Manter a medicação"
+  },
   Plavix: {
+    suspender: "7 dias antes do exame",
+    retornar: "No dia seguinte ao exame"
+  },
+  Clopidogrel: {
     suspender: "7 dias antes do exame",
     retornar: "No dia seguinte ao exame"
   },
@@ -12,7 +20,19 @@ const instrucoes = {
     suspender: "5 dias antes do exame",
     retornar: "No dia seguinte ao exame"
   },
+  Marevan: {
+    suspender: "5 dias antes do exame",
+    retornar: "No dia seguinte ao exame"
+  },
+  Coumadin: {
+    suspender: "5 dias antes do exame",
+    retornar: "No dia seguinte ao exame"
+  },
   Rivaroxaban: {
+    suspender: "2 dias antes do exame",
+    retornar: "No 2º dia após o exame"
+  },
+   Edoxaban: {
     suspender: "2 dias antes do exame",
     retornar: "No 2º dia após o exame"
   },
@@ -94,10 +114,6 @@ Suspensão: ${instrucoes[medPeso].suspender}
 Retorno: ${instrucoes[medPeso].retornar}
 `;
   }
-
-  texto += `
-Unidade preferida: ${getRadioValue("unidade")}
-`;
 
   return texto.trim();
 }

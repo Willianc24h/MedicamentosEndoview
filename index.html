@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
+    <header>
+      <img src="./assets/endo.png" alt="Logo Endoview" class="img" />
+    </header>
     <form id="formulario" class="formulario">
         <div class="container">
-
-
       <div class="colunaUm">
         <legend>Tem algum problema cardíaco importante?</legend>
 
@@ -47,28 +48,7 @@
           <label for="Nao">Não</label>
         </div>
         <br><br>
-        <legend>Tem alguma problema de alergia?</legend>
-
-        <div>
-          <input
-            type="radio"
-            id="respostaAlergiaSim"
-            name="alergia"
-            value="Sim"
-          />
-          <label for="Sim">Sim</label>
-        </div>
-
-        <div>
-          <input
-            type="radio"
-            id="respostaAlergiaNao"
-            name="alergia"
-            value="Não"
-          />
-          <label for="Nao">Não</label>
-        </div>
-        <br><br>
+        
         <legend>Faz uso de algum remédio que altera a coagulação?</legend>
 
         <div>
@@ -93,18 +73,22 @@
         <br><br>
         <select id="medicamentoCoagulacao">
           <option value="" disabled selected>Indique o medicamento</option>
-          <option value="AAS">AAS, Aspirina</option>
-          <option value="Plavix">Plavix, Clopidogrel</option>
+          <option value="AAS">AAS</option>
+          <option value="Aspirina">Aspirina</option>
+          <option value="Plavix">Plavix</option>
+          <option value="Clopidogrel">Clopidogrel</option>
           <option value="Brilinta">
-            Brilinta, Marevan, Coumadin
+            Brilinta
           </option>
+          <option value="Marevan">Marevan</option>
+          <option value="Coumadin">Coumadin</option>
           <option value="Brilinta">
             Vasogard, Ginkgo Biloba, Cilostazol
           </option>
           <option value="Rivaroxaban">
             Rivaroxaban (Xarelto), Apixaban (Eliquis)
           </option>
-          <option value="Rivaroxaban">
+          <option value="Edoxaban">
             Edoxaban (Lixiana),
             Dabigatran (Pradaxa)
           </option>
@@ -129,6 +113,28 @@
             type="radio"
             id="respostaRespiratorioNao"
             name="respiratorio"
+            value="Não"
+          />
+          <label for="Nao">Não</label>
+        </div>
+        <br><br>
+        <legend>Tem alguma problema de alergia?</legend>
+
+        <div>
+          <input
+            type="radio"
+            id="respostaAlergiaSim"
+            name="alergia"
+            value="Sim"
+          />
+          <label for="Sim">Sim</label>
+        </div>
+
+        <div>
+          <input
+            type="radio"
+            id="respostaAlergiaNao"
+            name="alergia"
             value="Não"
           />
           <label for="Nao">Não</label>
@@ -160,7 +166,7 @@
             Empagliflozina (Jardiance ou Glyxambi)
           </option>
         </select>
-        <br><br>
+        <!-- <br><br>
         <legend>
           Qual das unidades da Endoview você tem preferência para agendar seu
           procedimento?
@@ -209,12 +215,12 @@
             name="unidade"
             value="Jacarepaguá"
           />
-          <label for="unidadeJacarepaguá">Jacarepaguá</label>
+          <label for="unidadeJacarepaguá">Jacarepaguá</label> -->
         </div>
     </div>
 </div>
 <div class="btns">
-    <button type="button" id="btnLimpar" class="btnLimpar">Limpar Campos</button>
+    <button type="button" id="btnLimpar" class="btnLimpar">Limpar</button>
     <button type="button" id="btnCopiar" class="btnLimpar">Copiar</button>
 </div>
 
