@@ -4,7 +4,7 @@ const instrucoes = {
     suspender: "Manter a medicação",
     retornar: "Manter a medicação"
   },
-    Aspirina: {
+  Aspirina: {
     suspender: "Manter a medicação",
     retornar: "Manter a medicação"
   },
@@ -32,7 +32,7 @@ const instrucoes = {
     suspender: "2 dias antes do exame",
     retornar: "No 2º dia após o exame"
   },
-   Edoxaban: {
+  Edoxaban: {
     suspender: "2 dias antes do exame",
     retornar: "No 2º dia após o exame"
   },
@@ -71,7 +71,7 @@ const instrucoes = {
 // ---------------- Funções Auxiliares ----------------
 function getRadioValue(name) {
   const selecionado = document.querySelector(`input[name="${name}"]:checked`);
-  return selecionado ? selecionado.value : "Não informado";
+  return selecionado ? selecionado.value : "";
 }
 
 function getSelectValue(id) {
@@ -157,13 +157,41 @@ function configurarPergunta(radioSim, radioNao, select, respostaId) {
     }
   });
 
-  // Inicial: esconder select
   select.style.display = "none";
+}
+
+// ---------------- Validação ----------------
+function validarFormulario() {
+  const perguntas = [
+    { nome: "coracao", numero: 1 },
+    { nome: "renal", numero: 2 },
+    { nome: "coagulacao", numero: 3, medicamento: "medicamentoCoagulacao", tipo: "coagulação" },
+    { nome: "respiratorio", numero: 4 },
+    { nome: "alergia", numero: 5 },
+    { nome: "peso", numero: 6, medicamento: "medicamentoPeso", tipo: "perda de peso" }
+  ];
+
+  for (const p of perguntas) {
+    const resposta = getRadioValue(p.nome);
+    if (!resposta) {
+      alert(`Responda a pergunta ${p.numero}.`);
+      return false;
+    }
+
+    if (resposta === "Sim" && p.medicamento) {
+      const med = getSelectValue(p.medicamento);
+      if (!med) {
+        alert(`Indique o medicamento para ${p.tipo}.`);
+        return false;
+      }
+    }
+  }
+
+  return true;
 }
 
 // ---------------- Inicialização ----------------
 document.addEventListener("DOMContentLoaded", () => {
-  // Configurar selects condicionais
   configurarPergunta(
     document.getElementById("respostaCoagulacaoSim"),
     document.getElementById("respostaCoagulacaoNao"),
@@ -178,14 +206,19 @@ document.addEventListener("DOMContentLoaded", () => {
     "respostaPeso"
   );
 
-  // Botão Copiar
+  // Botão Copiar com validação
   document.getElementById("btnCopiar").addEventListener("click", () => {
+    if (!validarFormulario()) return;
+
     const dados = coletarDados();
-    navigator.clipboard.writeText(dados).then(() => {
-      alert("Dados copiados para a área de transferência!");
-    }).catch(err => {
-      console.error("Erro ao copiar: ", err);
-    });
+    navigator.clipboard
+      .writeText(dados)
+      .then(() => {
+        alert("Dados copiados para a área de transferência!");
+      })
+      .catch(err => {
+        console.error("Erro ao copiar: ", err);
+      });
   });
 
   // Botão Limpar

@@ -8,13 +8,10 @@
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
-    <header>
-      <img src="./assets/endo.png" alt="Logo Endoview" class="img" />
-    </header>
     <form id="formulario" class="formulario">
         <div class="container">
       <div class="colunaUm">
-        <legend>Tem algum problema cardíaco importante?</legend>
+        <legend>1. Tem algum problema cardíaco importante?</legend>
 
         <div>
           <input
@@ -36,7 +33,7 @@
           <label for="Nao">Não</label>
         </div>
         <br><br>
-        <legend>Tem algum problema renal importante?</legend>
+        <legend>2. Tem algum problema renal importante?</legend>
 
         <div>
           <input type="radio" id="respostaRenalSim" name="renal" value="Sim" />
@@ -49,7 +46,7 @@
         </div>
         <br><br>
         
-        <legend>Faz uso de algum remédio que altera a coagulação?</legend>
+        <legend>3. Faz uso de algum remédio que altera a coagulação?</legend>
 
         <div>
           <input
@@ -95,8 +92,18 @@
         </select>
       </div>
 
+      <div class="centro">
+<img src="./assets/endo.png" alt="Logo Endoview" class="img" />
+
+        <div class="btns">
+          <button type="button" id="btnCopiar" class="btnLimpar">Copiar</button>
+    <button type="button" id="btnLimpar" class="btnLimpar">Limpar</button>
+</div>
+      </div>
+        
+
       <div class="colunaDois">
-        <legend>Tem algum problema respiratório importante?</legend>
+        <legend>4. Tem algum problema respiratório importante?</legend>
 
         <div>
           <input
@@ -118,7 +125,7 @@
           <label for="Nao">Não</label>
         </div>
         <br><br>
-        <legend>Tem alguma problema de alergia?</legend>
+        <legend>5. Tem alguma problema de alergia importante?</legend>
 
         <div>
           <input
@@ -140,7 +147,7 @@
           <label for="Nao">Não</label>
         </div>
         <br><br>
-        <legend>Faz uso de algum remédio para perda de peso?</legend>
+        <legend>6. Faz uso de algum remédio para perda de peso?</legend>
 
         <div>
           <input type="radio" id="respostaPesoSim" name="peso" value="Sim" />
@@ -169,11 +176,6 @@
         </div>
     </div>
 </div>
-<div class="btns">
-    <button type="button" id="btnLimpar" class="btnLimpar">Limpar</button>
-    <button type="button" id="btnCopiar" class="btnLimpar">Copiar</button>
-</div>
-
     </form>
     <script src="./js/index.js"></script>
   </body>

@@ -107,14 +107,24 @@ img {
 
 .btns{
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
   gap: 10px;
   margin-top: 10px;
-  width: 70%;
+  width: 40%;
 }
 
 .img{
   margin: 0 auto;
   display: block;
+}
+
+.centro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
 }
