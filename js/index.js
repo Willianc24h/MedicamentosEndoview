@@ -2,70 +2,78 @@ const instrucoes = {
   // Anticoagulantes
   AAS: {
     suspender: "Manter a medicação",
-    retornar: "Manter a medicação"
+    retornar: "Manter a medicação",
   },
   Aspirina: {
     suspender: "Manter a medicação",
-    retornar: "Manter a medicação"
+    retornar: "Manter a medicação",
   },
   Plavix: {
     suspender: "7 dias antes do exame",
-    retornar: "No dia seguinte ao exame"
+    retornar: "No dia seguinte ao exame",
   },
   Clopidogrel: {
     suspender: "7 dias antes do exame",
-    retornar: "No dia seguinte ao exame"
+    retornar: "No dia seguinte ao exame",
   },
   Brilinta: {
     suspender: "5 dias antes do exame",
-    retornar: "No dia seguinte ao exame"
+    retornar: "No dia seguinte ao exame",
   },
   Marevan: {
     suspender: "5 dias antes do exame",
-    retornar: "No dia seguinte ao exame"
+    retornar: "No dia seguinte ao exame",
   },
   Coumadin: {
     suspender: "5 dias antes do exame",
-    retornar: "No dia seguinte ao exame"
+    retornar: "No dia seguinte ao exame",
   },
   Rivaroxaban: {
     suspender: "2 dias antes do exame",
-    retornar: "No 2º dia após o exame"
+    retornar: "No 2º dia após o exame",
+  },
+  Apixaban: {
+    suspender: "2 dias antes do exame",
+    retornar: "No 2º dia após o exame",
   },
   Edoxaban: {
     suspender: "2 dias antes do exame",
-    retornar: "No 2º dia após o exame"
+    retornar: "No 2º dia após o exame",
+  },
+  Dabigatran: {
+    suspender: "2 dias antes do exame",
+    retornar: "No 2º dia após o exame",
   },
 
   // Perda de peso
   Semaglutida: {
     suspender: "21 dias antes do exame",
-    retornar: "No dia seguinte ao exame"
+    retornar: "No dia seguinte ao exame",
   },
   Dulaglutida: {
     suspender: "10 dias antes do exame",
-    retornar: "No dia seguinte ao exame"
+    retornar: "No dia seguinte ao exame",
   },
   Liraglutida: {
     suspender: "3 dias antes do exame",
-    retornar: "No dia seguinte ao exame"
+    retornar: "No dia seguinte ao exame",
   },
   Tirzepatida: {
     suspender: "14 dias antes do exame",
-    retornar: "No dia seguinte ao exame"
+    retornar: "No dia seguinte ao exame",
   },
   Naltrexona: {
     suspender: "3 dias antes do exame",
-    retornar: "No dia seguinte ao exame"
+    retornar: "No dia seguinte ao exame",
   },
   Dapagliflozina: {
     suspender: "3 dias antes do exame",
-    retornar: "No dia seguinte ao exame"
+    retornar: "No dia seguinte ao exame",
   },
   Empagliflozina: {
     suspender: "3 dias antes do exame",
-    retornar: "No dia seguinte ao exame"
-  }
+    retornar: "No dia seguinte ao exame",
+  },
 };
 
 // ---------------- Funções Auxiliares ----------------
@@ -89,21 +97,20 @@ function coletarDados() {
   let texto = `
 Problema cardíaco: ${getRadioValue("coracao")}
 Problema renal: ${getRadioValue("renal")}
-Alergia: ${getRadioValue("alergia")}
-Problema respiratório: ${getRadioValue("respiratorio")}
-
 Coagulação: ${coagulacao}
 Medicamento coagulação: ${medCoagulacao || "Não informado"}
 `;
 
-  if (medCoagulacao && instrucoes[medCoagulacao]) {
-    texto += `
+if (medCoagulacao && instrucoes[medCoagulacao]) {
+  texto += `
 Suspensão: ${instrucoes[medCoagulacao].suspender}
 Retorno: ${instrucoes[medCoagulacao].retornar}
-`;
+  `;
   }
 
   texto += `
+Problema respiratório: ${getRadioValue("respiratorio")}
+Alergia: ${getRadioValue("alergia")}
 Uso de remédio para perda de peso: ${peso}
 Medicamento peso: ${medPeso || "Não informado"}
 `;
@@ -165,10 +172,20 @@ function validarFormulario() {
   const perguntas = [
     { nome: "coracao", numero: 1 },
     { nome: "renal", numero: 2 },
-    { nome: "coagulacao", numero: 3, medicamento: "medicamentoCoagulacao", tipo: "coagulação" },
+    {
+      nome: "coagulacao",
+      numero: 3,
+      medicamento: "medicamentoCoagulacao",
+      tipo: "coagulação",
+    },
     { nome: "respiratorio", numero: 4 },
     { nome: "alergia", numero: 5 },
-    { nome: "peso", numero: 6, medicamento: "medicamentoPeso", tipo: "perda de peso" }
+    {
+      nome: "peso",
+      numero: 6,
+      medicamento: "medicamentoPeso",
+      tipo: "perda de peso",
+    },
   ];
 
   for (const p of perguntas) {
@@ -216,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(() => {
         alert("Dados copiados para a área de transferência!");
       })
-      .catch(err => {
+      .catch((err) => {
         console.error("Erro ao copiar: ", err);
       });
   });
@@ -224,7 +241,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Botão Limpar
   document.getElementById("btnLimpar").addEventListener("click", () => {
     document.getElementById("formulario").reset();
-    document.querySelectorAll(".resposta").forEach(div => (div.style.display = "none"));
-    document.querySelectorAll("select").forEach(select => (select.style.display = "none"));
+    document
+      .querySelectorAll(".resposta")
+      .forEach((div) => (div.style.display = "none"));
+    document
+      .querySelectorAll("select")
+      .forEach((select) => (select.style.display = "none"));
   });
 });
