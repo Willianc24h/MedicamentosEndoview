@@ -116,3 +116,11 @@ img {
   gap: 10px;
   margin-bottom: 20px;
 }
+
+.inputAlergia {
+  margin-top: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}

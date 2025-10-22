@@ -1,79 +1,25 @@
 const instrucoes = {
   // Anticoagulantes
-  AAS: {
-    suspender: "Manter a medicação",
-    retornar: "Manter a medicação",
-  },
-  Aspirina: {
-    suspender: "Manter a medicação",
-    retornar: "Manter a medicação",
-  },
-  Plavix: {
-    suspender: "7 dias antes do exame",
-    retornar: "No dia seguinte ao exame",
-  },
-  Clopidogrel: {
-    suspender: "7 dias antes do exame",
-    retornar: "No dia seguinte ao exame",
-  },
-  Brilinta: {
-    suspender: "5 dias antes do exame",
-    retornar: "No dia seguinte ao exame",
-  },
-  Marevan: {
-    suspender: "5 dias antes do exame",
-    retornar: "No dia seguinte ao exame",
-  },
-  Coumadin: {
-    suspender: "5 dias antes do exame",
-    retornar: "No dia seguinte ao exame",
-  },
-  Rivaroxaban: {
-    suspender: "2 dias antes do exame",
-    retornar: "No 2º dia após o exame",
-  },
-  Apixaban: {
-    suspender: "2 dias antes do exame",
-    retornar: "No 2º dia após o exame",
-  },
-  Edoxaban: {
-    suspender: "2 dias antes do exame",
-    retornar: "No 2º dia após o exame",
-  },
-  Dabigatran: {
-    suspender: "2 dias antes do exame",
-    retornar: "No 2º dia após o exame",
-  },
+  AAS: { suspender: "Manter a medicação", retornar: "Manter a medicação" },
+  Aspirina: { suspender: "Manter a medicação", retornar: "Manter a medicação" },
+  Plavix: { suspender: "7 dias antes do exame", retornar: "No dia seguinte ao exame" },
+  Clopidogrel: { suspender: "7 dias antes do exame", retornar: "No dia seguinte ao exame" },
+  Brilinta: { suspender: "5 dias antes do exame", retornar: "No dia seguinte ao exame" },
+  Marevan: { suspender: "5 dias antes do exame", retornar: "No dia seguinte ao exame" },
+  Coumadin: { suspender: "5 dias antes do exame", retornar: "No dia seguinte ao exame" },
+  Rivaroxaban: { suspender: "2 dias antes do exame", retornar: "No 2º dia após o exame" },
+  Apixaban: { suspender: "2 dias antes do exame", retornar: "No 2º dia após o exame" },
+  Edoxaban: { suspender: "2 dias antes do exame", retornar: "No 2º dia após o exame" },
+  Dabigatran: { suspender: "2 dias antes do exame", retornar: "No 2º dia após o exame" },
 
   // Perda de peso
-  Semaglutida: {
-    suspender: "21 dias antes do exame",
-    retornar: "No dia seguinte ao exame",
-  },
-  Dulaglutida: {
-    suspender: "10 dias antes do exame",
-    retornar: "No dia seguinte ao exame",
-  },
-  Liraglutida: {
-    suspender: "3 dias antes do exame",
-    retornar: "No dia seguinte ao exame",
-  },
-  Tirzepatida: {
-    suspender: "14 dias antes do exame",
-    retornar: "No dia seguinte ao exame",
-  },
-  Naltrexona: {
-    suspender: "3 dias antes do exame",
-    retornar: "No dia seguinte ao exame",
-  },
-  Dapagliflozina: {
-    suspender: "3 dias antes do exame",
-    retornar: "No dia seguinte ao exame",
-  },
-  Empagliflozina: {
-    suspender: "3 dias antes do exame",
-    retornar: "No dia seguinte ao exame",
-  },
+  Semaglutida: { suspender: "21 dias antes do exame", retornar: "No dia seguinte ao exame" },
+  Dulaglutida: { suspender: "10 dias antes do exame", retornar: "No dia seguinte ao exame" },
+  Liraglutida: { suspender: "3 dias antes do exame", retornar: "No dia seguinte ao exame" },
+  Tirzepatida: { suspender: "14 dias antes do exame", retornar: "No dia seguinte ao exame" },
+  Naltrexona: { suspender: "3 dias antes do exame", retornar: "No dia seguinte ao exame" },
+  Dapagliflozina: { suspender: "3 dias antes do exame", retornar: "No dia seguinte ao exame" },
+  Empagliflozina: { suspender: "3 dias antes do exame", retornar: "No dia seguinte ao exame" },
 };
 
 // ---------------- Funções Auxiliares ----------------
@@ -93,6 +39,7 @@ function coletarDados() {
 
   const medCoagulacao = getSelectValue("medicamentoCoagulacao");
   const medPeso = getSelectValue("medicamentoPeso");
+  const descricaoAlergia = document.getElementById("descricaoAlergia").value.trim();
 
   let texto = `
 Problema cardíaco: ${getRadioValue("coracao")}
@@ -102,15 +49,16 @@ Medicamento coagulação: ${medCoagulacao || "Não informado"}
 `;
 
 if (medCoagulacao && instrucoes[medCoagulacao]) {
-  texto += `
+    texto += `
 Suspensão: ${instrucoes[medCoagulacao].suspender}
 Retorno: ${instrucoes[medCoagulacao].retornar}
-  `;
-  }
+`;
+}
 
-  texto += `
+texto += `
 Problema respiratório: ${getRadioValue("respiratorio")}
 Alergia: ${getRadioValue("alergia")}
+Descrição da alergia: ${descricaoAlergia || "Não se aplica"}
 Uso de remédio para perda de peso: ${peso}
 Medicamento peso: ${medPeso || "Não informado"}
 `;
@@ -167,6 +115,24 @@ function configurarPergunta(radioSim, radioNao, select, respostaId) {
   select.style.display = "none";
 }
 
+// --------- Função específica para ALERGIA ------------
+function configurarAlergia(radioSim, radioNao, input) {
+  radioSim.addEventListener("change", () => {
+    if (radioSim.checked) {
+      input.style.display = "block";
+    }
+  });
+
+  radioNao.addEventListener("change", () => {
+    if (radioNao.checked) {
+      input.style.display = "none";
+      input.value = "";
+    }
+  });
+
+  input.style.display = "none";
+}
+
 // ---------------- Validação ----------------
 function validarFormulario() {
   const perguntas = [
@@ -179,10 +145,14 @@ function validarFormulario() {
       tipo: "coagulação",
     },
     { nome: "respiratorio", numero: 4 },
-    { nome: "alergia", numero: 5 },
+    { nome: "alergia", 
+      numero: 5,
+      medicamento: "descricaoAlergia",
+      tipo: "alergia",
+    },
     {
       nome: "peso",
-      numero: 6,
+      numero: 7,
       medicamento: "medicamentoPeso",
       tipo: "perda de peso",
     },
@@ -223,6 +193,12 @@ document.addEventListener("DOMContentLoaded", () => {
     "respostaPeso"
   );
 
+  configurarAlergia(
+    document.getElementById("respostaAlergiaSim"),
+    document.getElementById("respostaAlergiaNao"),
+    document.getElementById("descricaoAlergia")
+  );
+
   // Botão Copiar com validação
   document.getElementById("btnCopiar").addEventListener("click", () => {
     if (!validarFormulario()) return;
@@ -245,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .querySelectorAll(".resposta")
       .forEach((div) => (div.style.display = "none"));
     document
-      .querySelectorAll("select")
-      .forEach((select) => (select.style.display = "none"));
+      .querySelectorAll("select, input[type='text']")
+      .forEach((el) => (el.style.display = "none"));
   });
 });
