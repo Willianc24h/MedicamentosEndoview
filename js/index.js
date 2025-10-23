@@ -36,11 +36,10 @@ function getSelectValue(id) {
 function coletarDados() {
   const coagulacao = getRadioValue("coagulacao");
   const peso = getRadioValue("peso");
-
   const medCoagulacao = getSelectValue("medicamentoCoagulacao");
   const medPeso = getSelectValue("medicamentoPeso");
   const descricaoAlergia = document.getElementById("descricaoAlergia").value.trim();
-
+  const latex = getRadioValue("latex");
   let texto = `
 Problema cardíaco: ${getRadioValue("coracao")}
 Problema renal: ${getRadioValue("renal")}
@@ -59,6 +58,7 @@ texto += `
 Problema respiratório: ${getRadioValue("respiratorio")}
 Alergia: ${getRadioValue("alergia")}
 Descrição da alergia: ${descricaoAlergia || "Não se aplica"}
+Tem alergia a látex: ${latex}
 Uso de remédio para perda de peso: ${peso}
 Medicamento peso: ${medPeso || "Não informado"}
 `;
@@ -149,6 +149,10 @@ function validarFormulario() {
       numero: 5,
       medicamento: "descricaoAlergia",
       tipo: "alergia",
+    },
+    { nome: "latex", 
+      numero: 6,
+      tipo: "Látex",
     },
     {
       nome: "peso",
